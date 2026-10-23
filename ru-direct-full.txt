@@ -1,5 +1,5 @@
 # strict + сервисы из UnRKN/ru-blocklist, которые режут или палят VPN
-# Формат Mihomo: behavior=domain, format=text. Всего: 818
+# Формат Mihomo: behavior=domain, format=text. Всего: 819
 +.1c.ru
 +.2gis.ae
 +.2gis.am
@@ -154,6 +154,7 @@
 +.gazprom-neft.ru
 +.gazprombank.ru
 +.gb.ru
++.get-save.com
 +.gismeteo.ru
 +.globaloet.ru
 +.glutec.ru

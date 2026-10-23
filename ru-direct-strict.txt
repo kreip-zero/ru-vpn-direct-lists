@@ -1,5 +1,5 @@
 # Сайты, доступные только с российских IP (geoblock) + custom.txt
-# Формат Mihomo: behavior=domain, format=text. Всего: 236
+# Формат Mihomo: behavior=domain, format=text. Всего: 237
 +.2ip.ru
 +.adygeya.ru
 +.alefbank.com
@@ -54,6 +54,7 @@
 +.ekburg.ru
 +.emias.info
 +.forshtadt.ru
++.get-save.com
 +.goskey.ru
 +.gosuslugi.ru
 +.gov.ru
