@@ -1,0 +1,13 @@
+# Твои домены: по одному на строку, без https://. Поддомены покрываются автоматически.
+# Добавил сюда сайт, который не открывается через VPN, и через несколько минут он пойдёт напрямую.
+boosty.to
+mangalib.me
+mangalib.org
+ranobelib.me
+anime-lib.ru
+lib.social
+imglib.info
+delivery-club.ru
+vkuseraudio.net
+vkuserimages.net
+vkuserlive.com
