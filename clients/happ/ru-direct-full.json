@@ -1,0 +1,34 @@
+{
+  "Name": "RU Direct (full)",
+  "GlobalProxy": "true",
+  "UseChunkFiles": "false",
+  "RemoteDns": "8.8.8.8",
+  "DomesticDns": "77.88.8.8",
+  "RemoteDNSType": "DoH",
+  "RemoteDNSDomain": "https://8.8.8.8/dns-query",
+  "RemoteDNSIP": "8.8.8.8",
+  "DomesticDNSType": "DoH",
+  "DomesticDNSDomain": "https://77.88.8.8/dns-query",
+  "DomesticDNSIP": "77.88.8.8",
+  "Geoipurl": "https://cdn.jsdelivr.net/gh/hydraponique/roscomvpn-geoip/release/geoip.dat",
+  "Geositeurl": "https://cdn.jsdelivr.net/gh/kreip-zero/ru-vpn-direct-lists@main/geosite/ru-direct.dat",
+  "LastUpdated": "1792744158",
+  "RouteOrder": "block-proxy-direct",
+  "DirectSites": [
+    "geosite:RU-DIRECT-FULL"
+  ],
+  "DirectIp": [
+    "10.0.0.0/8",
+    "172.16.0.0/12",
+    "192.168.0.0/16",
+    "169.254.0.0/16",
+    "224.0.0.0/4",
+    "255.255.255.255"
+  ],
+  "ProxySites": [],
+  "ProxyIp": [],
+  "BlockSites": [],
+  "BlockIp": [],
+  "DomainStrategy": "IPIfNonMatch",
+  "FakeDNS": "false"
+}

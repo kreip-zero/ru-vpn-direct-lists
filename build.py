@@ -4,10 +4,15 @@
 Источники скачиваются заново при каждом запуске. Если источник недоступен или вернул
 подозрительно мало данных, берётся его последняя удачная копия из sources/.
 
-Результат (формат Mihomo rule-provider: behavior=domain, format=text):
-  ru-direct-strict.txt  - домены, которые гарантированно пускают только с российских IP
+Результат:
+  ru-direct-strict.txt  - домены, которые пускают только с российских IP
                           (ru-available-only-inside) + curated-список hydraponique + custom.txt
   ru-direct-full.txt    - strict + список UnRKN (сервисы, которые режут или палят VPN)
+  Оба файла в формате Mihomo rule-provider (behavior=domain, format=text).
+
+  geosite/ru-direct.dat        - те же списки как geosite.dat (теги RU-DIRECT-STRICT, RU-DIRECT-FULL)
+  clients/happ, clients/incy   - профили маршрутизации (JSON) и диплинки для Happ и Incy
+  sing-box/ru-direct-*.json    - rule-set в формате source для клиентов на sing-box
 """
 import datetime
 import os
@@ -153,6 +158,126 @@ def write_list(filename, domains, title):
     print(f"[out]  {filename}: {len(domains)} доменов ({stamp})")
 
 
+# --- geosite.dat: свой файл с двумя тегами для Happ, Incy и любых клиентов на Xray ---
+GEOSITE_TAGS = {"strict": "RU-DIRECT-STRICT", "full": "RU-DIRECT-FULL"}
+GEOSITE_OUT = os.path.join("geosite", "ru-direct.dat")
+
+
+def _enc_varint(n):
+    out = bytearray()
+    while True:
+        b = n & 0x7F
+        n >>= 7
+        if n:
+            out.append(b | 0x80)
+        else:
+            out.append(b)
+            return bytes(out)
+
+
+def _enc_bytes(field, payload):
+    return _enc_varint((field << 3) | 2) + _enc_varint(len(payload)) + payload
+
+
+def build_geosite(lists):
+    """lists: {тег: [домены]}. Тип 2 = domain (сам домен и все поддомены)."""
+    out = b""
+    for tag, domains in lists.items():
+        site = _enc_bytes(1, tag.encode())
+        for d in domains:
+            dom = _enc_varint(1 << 3) + _enc_varint(2) + _enc_bytes(2, d.encode())
+            site += _enc_bytes(2, dom)
+        out += _enc_bytes(1, site)
+    return out
+
+
+def write_geosite(lists):
+    data = build_geosite(lists)
+    # проверка: файл читается обратно и совпадает с исходными списками
+    for tag, domains in lists.items():
+        if sorted(geosite_domains(data, tag.lower())) != sorted(domains):
+            raise RuntimeError(f"geosite.dat: тег {tag} не совпал после чтения")
+    path = os.path.join(ROOT, GEOSITE_OUT)
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "wb") as f:
+        f.write(data)
+    print(f"[out]  {GEOSITE_OUT}: {len(data)} байт, теги {', '.join(lists)}")
+
+
+# --- профили маршрутизации Happ и Incy (формат совпадает, различается схема диплинка) ---
+CDN_BASE = "https://cdn.jsdelivr.net/gh/kreip-zero/ru-vpn-direct-lists@main"
+PROFILE_UPDATED = "1792744158"  # менять вручную, когда меняется структура профиля
+CLIENT_SCHEMES = {"happ": "happ", "incy": "incy"}
+
+
+def profile(kind):
+    return {
+        "Name": f"RU Direct ({kind})",
+        "GlobalProxy": "true",
+        "UseChunkFiles": "false",
+        "RemoteDns": "8.8.8.8",
+        "DomesticDns": "77.88.8.8",
+        "RemoteDNSType": "DoH",
+        "RemoteDNSDomain": "https://8.8.8.8/dns-query",
+        "RemoteDNSIP": "8.8.8.8",
+        "DomesticDNSType": "DoH",
+        "DomesticDNSDomain": "https://77.88.8.8/dns-query",
+        "DomesticDNSIP": "77.88.8.8",
+        "Geoipurl": "https://cdn.jsdelivr.net/gh/hydraponique/roscomvpn-geoip/release/geoip.dat",
+        "Geositeurl": f"{CDN_BASE}/{GEOSITE_OUT.replace(os.sep, '/')}",
+        "LastUpdated": PROFILE_UPDATED,
+        "RouteOrder": "block-proxy-direct",
+        "DirectSites": [f"geosite:{GEOSITE_TAGS[kind]}"],
+        "DirectIp": [
+            "10.0.0.0/8",
+            "172.16.0.0/12",
+            "192.168.0.0/16",
+            "169.254.0.0/16",
+            "224.0.0.0/4",
+            "255.255.255.255",
+        ],
+        "ProxySites": [],
+        "ProxyIp": [],
+        "BlockSites": [],
+        "BlockIp": [],
+        "DomainStrategy": "IPIfNonMatch",
+        "FakeDNS": "false",
+    }
+
+
+def write_profiles():
+    import base64
+    import json
+
+    for client, scheme in CLIENT_SCHEMES.items():
+        folder = os.path.join(ROOT, "clients", client)
+        os.makedirs(folder, exist_ok=True)
+        for kind in GEOSITE_TAGS:
+            data = profile(kind)
+            with open(os.path.join(folder, f"ru-direct-{kind}.json"), "w", encoding="utf-8", newline="\n") as f:
+                json.dump(data, f, ensure_ascii=False, indent=2)
+                f.write("\n")
+            compact = json.dumps(data, ensure_ascii=False, separators=(",", ":")).encode()
+            link = f"{scheme}://routing/onadd/{base64.b64encode(compact).decode()}"
+            with open(os.path.join(folder, f"ru-direct-{kind}.deeplink"), "w", encoding="utf-8", newline="\n") as f:
+                f.write(link + "\n")
+    print("[out]  clients/happ, clients/incy: профили и диплинки")
+
+
+# --- sing-box: rule-set в виде исходного JSON (format: source) ---
+def write_singbox(lists):
+    import json
+
+    folder = os.path.join(ROOT, "sing-box")
+    os.makedirs(folder, exist_ok=True)
+    for kind, domains in lists.items():
+        data = {"version": 2, "rules": [{"domain_suffix": domains}]}
+        with open(os.path.join(folder, f"ru-direct-{kind}.json"), "w", encoding="utf-8", newline="\n") as f:
+            json.dump(data, f, ensure_ascii=False, indent=1)
+            f.write("\n")
+    print("[out]  sing-box: ru-direct-strict.json, ru-direct-full.json")
+
+
 def main():
     os.makedirs(SRC, exist_ok=True)
     unrkn = fetch_source("unrkn", lambda: download(UNRKN_URL).decode("utf-8").splitlines())
@@ -176,6 +301,10 @@ def main():
         full,
         "strict + сервисы из UnRKN/ru-blocklist, которые режут или палят VPN",
     )
+
+    write_geosite({GEOSITE_TAGS["strict"]: strict, GEOSITE_TAGS["full"]: full})
+    write_profiles()
+    write_singbox({"strict": strict, "full": full})
 
     # раз в неделю меняем этот файл, чтобы GitHub не отключил расписание из-за неактивности репозитория
     year, week, _ = datetime.date.today().isocalendar()
