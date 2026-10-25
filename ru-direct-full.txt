@@ -1,5 +1,5 @@
 # strict + сервисы из UnRKN/ru-blocklist, которые режут или палят VPN
-# Формат Mihomo: behavior=domain, format=text. Всего: 819
+# Формат Mihomo: behavior=domain, format=text. Всего: 824
 +.1c.ru
 +.2gis.ae
 +.2gis.am
@@ -229,6 +229,10 @@
 +.kion.ru
 +.kirov.ru
 +.koddobra.ru
++.kodik-add.com
++.kodik.info
++.kodikplayer.com
++.kodikres.com
 +.koenig.ru
 +.kommersant.ru
 +.kontur.ru
@@ -629,6 +633,7 @@
 +.upravel.com
 +.usedesk.ru
 +.userapi.com
++.userecho.ru
 +.uxfeedback.ru
 +.vamprivet.ru
 +.vgtrk.com

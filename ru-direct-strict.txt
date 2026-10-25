@@ -1,5 +1,5 @@
 # Сайты, доступные только с российских IP (geoblock) + custom.txt
-# Формат Mihomo: behavior=domain, format=text. Всего: 237
+# Формат Mihomo: behavior=domain, format=text. Всего: 242
 +.2ip.ru
 +.adygeya.ru
 +.alefbank.com
@@ -93,6 +93,10 @@
 +.kinescopecdn.net
 +.kinopoisk.ru
 +.kirov.ru
++.kodik-add.com
++.kodik.info
++.kodikplayer.com
++.kodikres.com
 +.koenig.ru
 +.korona.com
 +.kostroma.ru
@@ -198,6 +202,7 @@
 +.udm.ru
 +.udmurtia.ru
 +.ulan-ude.ru
++.userecho.ru
 +.vkuseraudio.net
 +.vkuserimages.net
 +.vkuserlive.com
