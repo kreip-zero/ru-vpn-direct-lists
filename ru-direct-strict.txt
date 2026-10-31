@@ -1,5 +1,5 @@
 # Сайты, доступные только с российских IP (geoblock) + custom.txt
-# Формат Mihomo: behavior=domain, format=text. Всего: 374
+# Формат Mihomo: behavior=domain, format=text. Всего: 377
 +.1c-bitrix.ru
 +.1cfresh.com
 +.1cloud.ru
@@ -166,6 +166,7 @@
 +.mosenergosbyt.ru
 +.mosobleirc.ru
 +.mosoblgaz.ru
++.mospat.ru
 +.mosreg.ru
 +.mp.world
 +.murmansk.ru
@@ -194,6 +195,7 @@
 +.ozon.ru
 +.ozone.ru
 +.ozonusercontent.com
++.patriarchia.ru
 +.payecom.ru
 +.paywb.com
 +.penza.ru
@@ -212,6 +214,7 @@
 +.qms.ru
 +.ranobelib.me
 +.redheadsound.studio
++.regionvideo.ru
 +.restnproducts.ru
 +.rkbank.ru
 +.rkomi.ru
