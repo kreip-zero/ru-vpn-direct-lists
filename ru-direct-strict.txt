@@ -1,5 +1,5 @@
 # Сайты, доступные только с российских IP (geoblock) + custom.txt
-# Формат Mihomo: behavior=domain, format=text. Всего: 377
+# Формат Mihomo: behavior=domain, format=text. Всего: 378
 +.1c-bitrix.ru
 +.1cfresh.com
 +.1cloud.ru
@@ -263,6 +263,7 @@
 +.slavbank.ru
 +.smbcr-bank.ru
 +.smolensk.ru
++.solodcdn.com
 +.sourcecraft.dev
 +.spasibo.digital
 +.spasibosberbank.ru

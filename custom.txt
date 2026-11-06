@@ -153,3 +153,4 @@ yandex-team.com
 yandex.userecho.ru
 ydb.tech
 zvuk-b2b.com
+solodcdn.com
