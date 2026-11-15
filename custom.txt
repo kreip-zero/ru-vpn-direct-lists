@@ -154,3 +154,4 @@ yandex.userecho.ru
 ydb.tech
 zvuk-b2b.com
 solodcdn.com
+pegast.ru

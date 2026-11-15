@@ -1,5 +1,5 @@
 # Сайты, доступные только с российских IP (geoblock) + custom.txt
-# Формат Mihomo: behavior=domain, format=text. Всего: 378
+# Формат Mihomo: behavior=domain, format=text. Всего: 379
 +.1c-bitrix.ru
 +.1cfresh.com
 +.1cloud.ru
@@ -198,6 +198,7 @@
 +.patriarchia.ru
 +.payecom.ru
 +.paywb.com
++.pegast.ru
 +.penza.ru
 +.perm.ru
 +.pesc.ru
