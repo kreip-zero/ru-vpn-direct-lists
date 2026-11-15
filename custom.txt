@@ -155,3 +155,13 @@ ydb.tech
 zvuk-b2b.com
 solodcdn.com
 pegast.ru
+# Туроператоры (2026-11-15)
+anextour.ru
+fstravel.com
+bgoperator.ru
+pac.ru
+paks.ru
+r-express.ru
+arttour.ru
+alean.ru
+bolshayastrana.com

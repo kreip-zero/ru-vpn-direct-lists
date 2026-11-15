@@ -1,5 +1,5 @@
 # strict + сервисы из UnRKN/ru-blocklist, которые режут или палят VPN
-# Формат Mihomo: behavior=domain, format=text. Всего: 961
+# Формат Mihomo: behavior=domain, format=text. Всего: 970
 +.1c-bitrix.ru
 +.1c.ru
 +.1cfresh.com
@@ -37,6 +37,7 @@
 +.afisha.ru
 +.agent.ru
 +.aif.ru
++.alean.ru
 +.alefbank.com
 +.alfabank.com
 +.alfabank.ru
@@ -45,6 +46,7 @@
 +.aliexpress.ru
 +.altai.ru
 +.amur.ru
++.anextour.ru
 +.anime-lib.ru
 +.animego.me
 +.ankb.ru
@@ -55,6 +57,7 @@
 +.apptracer.ru
 +.apteka.ru
 +.arkhangelsk.ru
++.arttour.ru
 +.asia-pay.ru
 +.astrakhan.ru
 +.auto.ru
@@ -82,10 +85,12 @@
 +.berizaryad.ru
 +.betboom.ru
 +.bfa.ru
++.bgoperator.ru
 +.bir.ru
 +.bitrix.info
 +.bkvet.ru
 +.blanc.ru
++.bolshayastrana.com
 +.boosty.to
 +.bryansk.ru
 +.burgerking.ru
@@ -176,6 +181,7 @@
 +.freestylediabetes.ru
 +.freestylelibre.ru
 +.fsb.ru
++.fstravel.com
 +.gazeta.ru
 +.gazprom-neft.ru
 +.gazprombank.ru
@@ -466,6 +472,8 @@
 +.ozonsport.ru
 +.ozonstatus.ru
 +.ozonusercontent.com
++.pac.ru
++.paks.ru
 +.patriarchia.ru
 +.payecom.ru
 +.paywb.com
@@ -494,6 +502,7 @@
 +.ptz.ru
 +.pvubank.com
 +.qms.ru
++.r-express.ru
 +.raiffeisen.ru
 +.rambler.ru
 +.ranobelib.me
