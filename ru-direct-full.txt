@@ -1,5 +1,5 @@
 # strict + сервисы из UnRKN/ru-blocklist, которые режут или палят VPN
-# Формат Mihomo: behavior=domain, format=text. Всего: 970
+# Формат Mihomo: behavior=domain, format=text. Всего: 972
 +.1c-bitrix.ru
 +.1c.ru
 +.1cfresh.com
@@ -523,6 +523,7 @@
 +.rnd.ru
 +.ro-edu.ru
 +.rocketbank.ru
++.rockstargames.com
 +.rosagroleasing.ru
 +.rosatom.ru
 +.rosbank.ru
@@ -533,6 +534,7 @@
 +.rostelecom.ru
 +.rostik.ru
 +.rsb.ru
++.rsg.sc
 +.rskrf.ru
 +.rsscenter.cloud
 +.rsscenter.ru

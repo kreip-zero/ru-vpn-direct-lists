@@ -165,3 +165,6 @@ r-express.ru
 arttour.ru
 alean.ru
 bolshayastrana.com
+# Rockstar Games / GTA (2026-11-18, проверка гипотезы про VPN)
+rockstargames.com
+rsg.sc
